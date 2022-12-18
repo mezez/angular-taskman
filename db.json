@@ -23,12 +23,6 @@
       "day": "September 7th at 1:20pm",
       "reminder": true,
       "id": 4
-    },
-    {
-      "text": "Susie Fing",
-      "day": "Tuesday",
-      "reminder": false,
-      "id": 5
     }
   ]
 }
