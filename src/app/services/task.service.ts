@@ -18,7 +18,12 @@ export class TaskService {
   }
 
   //fetch tasks from an actual backend
+  //no need for of() because http client returns an observable by default
   getTasks(): Observable<Task[]>{
     return this.http.get<Task[]>(this.apiUrl)
+  }
+
+  deleteTask(task:Task): Observable<Task>{
+    return this.http.delete<Task>(`${this.apiUrl}/${task.id}`)
   }
 }
