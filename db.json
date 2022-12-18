@@ -17,6 +17,18 @@
       "text": "Food Shopping",
       "day": "May 7th at 12:30pm",
       "reminder": false
+    },
+    {
+      "text": "Susie Fing",
+      "day": "September 7th at 1:20pm",
+      "reminder": true,
+      "id": 4
+    },
+    {
+      "text": "Susie Fing",
+      "day": "Tuesday",
+      "reminder": false,
+      "id": 5
     }
   ]
 }

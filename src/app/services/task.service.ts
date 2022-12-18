@@ -36,4 +36,8 @@ export class TaskService {
   toggleTaskReminder(task:Task): Observable<Task>{
     return this.http.put<Task>(`${this.apiUrl}/${task.id}`,task, httpOptions)
   }
+
+  createTask(task:Task): Observable<Task>{
+    return this.http.post<Task>(this.apiUrl,task, httpOptions)
+  }
 }
