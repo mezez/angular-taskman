@@ -1,37 +1,41 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Task } from 'src/app/Task';
 
-import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faTimes, faEdit } from '@fortawesome/free-solid-svg-icons';
+import { UiService } from 'src/app/services/ui.service';
 
 @Component({
   selector: 'app-task-item',
   templateUrl: './task-item.component.html',
-  styleUrls: ['./task-item.component.css']
+  styleUrls: ['./task-item.component.css'],
 })
-export class TaskItemComponent implements OnInit{
+export class TaskItemComponent implements OnInit {
   @Input() task: Task = {
-    text: "",
-    day: "",
-    reminder: false
-  }
-  @Output() onDeleteTask: EventEmitter<Task> = new EventEmitter()
-  @Output() onToggleReminder: EventEmitter<Task> = new EventEmitter()
+    text: '',
+    day: '',
+    reminder: false,
+  };
+
+  @Output() onEditTask: EventEmitter<Task> = new EventEmitter();
+  @Output() onDeleteTask: EventEmitter<Task> = new EventEmitter();
+  @Output() onToggleReminder: EventEmitter<Task> = new EventEmitter();
+
   faTimes = faTimes;
+  faEdit = faEdit;
 
-  constructor(){
-    
+  constructor(private uiService: UiService) {}
+
+  ngOnInit(): void {}
+
+  onEdit(task: Task) {
+    this.uiService.toggleEditTask(task);
   }
 
-  ngOnInit(): void {
-      
+  onDelete() {
+    this.onDeleteTask.emit(this.task);
   }
 
-  onDelete(){
-    this.onDeleteTask.emit(this.task)
-
-  }
-
-  onToggle(){
-    this.onToggleReminder.emit()
+  onToggle() {
+    this.onToggleReminder.emit();
   }
 }

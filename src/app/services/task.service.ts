@@ -1,43 +1,47 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from "@angular/common/http";
-import {Observable, of} from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable, of } from 'rxjs';
 import { Task } from 'src/app/Task';
 import { TASKS } from 'src/app/mock-tasks';
 
 const httpOptions = {
   headers: new HttpHeaders({
-    'Content-Type': 'application/json'
-  })
-}
+    'Content-Type': 'application/json',
+  }),
+};
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class TaskService {
-  private apiUrl: string = 'http://localhost:5000/tasks'
+  private apiUrl: string = 'http://localhost:5000/tasks';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
-  getTasksFromFile(): Observable<Task[]>{
+  getTasksFromFile(): Observable<Task[]> {
     const tasks = of(TASKS);
-    return tasks
+    return tasks;
   }
 
   //fetch tasks from an actual backend
   //no need for of() because http client returns an observable by default
-  getTasks(): Observable<Task[]>{
-    return this.http.get<Task[]>(this.apiUrl)
+  getTasks(): Observable<Task[]> {
+    return this.http.get<Task[]>(this.apiUrl);
   }
 
-  deleteTask(task:Task): Observable<Task>{
-    return this.http.delete<Task>(`${this.apiUrl}/${task.id}`)
+  deleteTask(task: Task): Observable<Task> {
+    return this.http.delete<Task>(`${this.apiUrl}/${task.id}`);
   }
 
-  toggleTaskReminder(task:Task): Observable<Task>{
-    return this.http.put<Task>(`${this.apiUrl}/${task.id}`,task, httpOptions)
+  toggleTaskReminder(task: Task): Observable<Task> {
+    return this.http.put<Task>(`${this.apiUrl}/${task.id}`, task, httpOptions);
   }
 
-  createTask(task:Task): Observable<Task>{
-    return this.http.post<Task>(this.apiUrl,task, httpOptions)
+  createTask(task: Task): Observable<Task> {
+    return this.http.post<Task>(this.apiUrl, task, httpOptions);
+  }
+
+  updateTask(task: Task): Observable<Task> {
+    return this.http.put<Task>(`${this.apiUrl}/${task.id}`, task, httpOptions);
   }
 }

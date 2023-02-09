@@ -5,3 +5,4 @@
   (onDeleteTask)="deleteTaskFromServer(task)"
   (onToggleReminder)="toggleTaskReminder(task)"
 ></app-task-item>
+<app-edit-task (onUpdateTask)="updateTask($event)"></app-edit-task>
